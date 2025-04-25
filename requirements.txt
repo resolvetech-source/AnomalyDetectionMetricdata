@@ -1,0 +1,8 @@
+pandas
+numpy
+python-dotenv>=0.19.0
+streamlit
+scikit-learn
+transformers
+torch
+llama-cpp-python
