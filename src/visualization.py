@@ -5,14 +5,14 @@ from components.data_cleaning import DataCleaning
 import joblib
 import time
 import datetime
-from pipeline.llm_pipeline import AnomalyLLMExplainer
+# from pipeline.llm_pipeline import AnomalyLLMExplainer
 from components.model_evaluation import ModelEvaluator
 
 logo = Image.open("src/resolve_tech_solutions_logo.jpg")
 model =  joblib.load("src/model/isolation_forest.pkl")
 train_df = pd.read_csv("src/data/train_cleaned.csv")
 
-llm_explainer =AnomalyLLMExplainer()
+# llm_explainer =AnomalyLLMExplainer()
 model_evaluator = ModelEvaluator()
 st.set_page_config(page_title="ResolveTech Solutions", layout="wide")
 # Sidebar layout
