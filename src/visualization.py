@@ -7,11 +7,12 @@ import time
 import datetime
 # from pipeline.llm_pipeline import AnomalyLLMExplainer
 from components.model_evaluation import ModelEvaluator
+import pytz
 
 logo = Image.open("src/resolve_tech_solutions_logo.jpg")
 model =  joblib.load("src/model/isolation_forest.pkl")
 train_df = pd.read_csv("src/data/train_cleaned.csv")
-
+utc_now = datetime.datetime.now(pytz.utc)
 # llm_explainer =AnomalyLLMExplainer()
 model_evaluator = ModelEvaluator()
 st.set_page_config(page_title="ResolveTech Solutions", layout="wide")
@@ -46,7 +47,11 @@ if page == "Anomaly Detection":
             cleaned_row = data_cleaning.clean(row)
 
             prediction =  model.predict(cleaned_row)[0]
-            formatted_time = datetime.datetime.now().strftime('%d-%m-%Y  %H:%M:%S')
+            local_timezone = pytz.timezone('Asia/Kolkata')  # Change to your time zone
+            local_time = utc_now.astimezone(local_timezone)
+
+            # Format the time as you want
+            formatted_time = local_time.strftime('%d-%m-%Y  %H:%M:%S')
             #formatted_time = pd.to_datetime(row['timestamp'].values[0]).strftime('%d-%m-%Y  %H:%M:%S')
 
             with st.container():
